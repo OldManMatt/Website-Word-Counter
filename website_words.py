@@ -21,6 +21,7 @@ list_of_words = []
 list_of_ignored_words = []
 list_of_lines = []
 
+# finds all words in the website and store them in list_of_words
 for item in get_links(url):
     response = requests.get(item)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -37,16 +38,15 @@ for item in get_links(url):
                 else:
                     list_of_ignored_words.append(word)
 
+# ranks the list of words from most common to least common
 unique_words = set(list_of_words)
 words_ranked_tuples = []
-
-unique_ignored_words = set(list_of_ignored_words)
-ignored_words_ranked_tuples = []
-
 for word in unique_words:
     words_ranked_tuples.append((word, list_of_words.count(word)))
 words_ranked_tuples.sort(key=lambda x: x[1], reverse=True)
 
+unique_ignored_words = set(list_of_ignored_words)
+ignored_words_ranked_tuples = []
 for word in unique_ignored_words:
     ignored_words_ranked_tuples.append(
         (word, list_of_ignored_words.count(word)))
@@ -60,4 +60,5 @@ except UnicodeEncodeError:
 print('\n', 'IGNORED WORDS RANKED **********')
 pprint(ignored_words_ranked_tuples)
 
-print(get_links(url))
+# line 65 prints all of the links used in the website, but is not required
+# print(get_links(url))
