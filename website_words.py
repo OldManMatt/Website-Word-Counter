@@ -60,5 +60,5 @@ except UnicodeEncodeError:
 print('\n', 'IGNORED WORDS RANKED **********')
 pprint(ignored_words_ranked_tuples)
 
-# line 65 prints all of the links used in the website, but is not required
+# line 64 prints all of the links used in the website, but is not required
 # print(get_links(url))
